@@ -34,6 +34,19 @@ a:visited, a:hover, a:active {
 </style>
 <body class="w3-black">
 
+    <script type="application/javascript" src="https://sdki.truepush.com/sdk/v2.0.2/app.js" async></script>
+    <script>
+    var truepush = window.truepush || [];
+            
+    truepush.push(function(){
+        truepush.Init({
+            id: "5e8470f2e2573dd649c1ff09"
+        },function(error){
+          if(error) console.error(error);
+        })
+    })
+    </script>
+
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center" background-color: #0097A7;>
   <!-- Avatar image in top left corner -->
