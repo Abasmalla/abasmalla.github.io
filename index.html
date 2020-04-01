@@ -55,6 +55,23 @@ a:visited, a:hover, a:active {
                 }
     })
 </script>
+<script>
+    truepush.push({
+      operation: "remove-tags",
+      data: [{ tagName: "YOUR_TAG_NAME", tagValue: "YOUR_TAG_VALUE_TO_BE_REMOVED" }],
+      callback: function(error,response){
+                  console.log(error,response);
+                }
+    })   
+</script>
+<script> 
+    truepush.push({
+      operation: "get-tags",
+      callback: function(error,response){
+        console.log(error,response);
+      }
+    })
+</script>
 
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center" background-color: #0097A7;>
