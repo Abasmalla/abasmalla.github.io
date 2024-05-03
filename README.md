@@ -1,9 +1,9 @@
-# unzipgit
-<img src="https://github.com/unzipgit/unzipgit.github.io/raw/main/images/unzippriview.png" width="1000" />
+# abasmalla
+<img src="https://github.com/abasmalla/abasmalla.github.io/raw/main/images/unzippriview.png" width="1000" />
 
-website: [unzipgit.github.io](https://unzipgit.github.io)
+website: [abasmalla.github.io](https://abasmalla.github.io)
 --- 
-- With unzipgit, you can unzip a .zip archive to your GitHub repository. Unzipgit uses the jszip library and the GitHub API, which means that all actions take place on the client side (your browser).
+- With abasmalla, you can unzip a .zip archive to your GitHub repository. abasmalla uses the jszip library and the GitHub API, which means that all actions take place on the client side (your browser).
 
 - If you want to unzip the archive to some folder, specify «yourrepo/folder» in the «repository» field.
 
