@@ -29,11 +29,17 @@ async function extractZip(zipData, username, repository, token) {
 
     for (const filename of Object.keys(zip.files)) {
         const fileData = await zip.files[filename].async('string');
-        await uploadToGitHub(username, repository, filename, fileData, token, branch);
-        uploadedFiles++;
+        try {
+            await uploadToGitHub(username, repository, filename, fileData, token, branch);
+            uploadedFiles++;
+        } catch (error) {
+            alert(`Failed to upload ${filename}: ${error.message}`);
+            console.error(`Failed to upload ${filename}: ${error.message}`);
+        }
         updateProgress(uploadedFiles, totalFiles);
     }
-    alert('All files uploaded successfully!');
+
+    alert('Upload process complete.');
 }
 
 async function uploadToGitHub(username, repository, filename, content, token, branch) {
@@ -55,7 +61,7 @@ async function uploadToGitHub(username, repository, filename, content, token, br
     });
 
     if (!response.ok) {
-        console.error(`Failed to upload ${filename}: ${response.statusText}`);
+        throw new Error(response.statusText);
     } else {
         console.log(`Successfully uploaded ${filename}`);
     }
