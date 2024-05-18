@@ -1,4 +1,4 @@
-async function handleFile() {
+function handleFile() {
     const file = document.getElementById('zipFile').files[0];
     if (file) {
         const reader = new FileReader();
