@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zip Extractor</title>
+</head>
+<body>
+    <input type="text" id="username" placeholder="GitHub Username" />
+    <input type="text" id="repository" placeholder="Repository Name" />
+    <input type="password" id="token" placeholder="GitHub Token" />
+    <input type="file" id="zipFile" />
+    <button onclick="handleFile()">Extract and Upload Zip</button>
+    <div id="output"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
