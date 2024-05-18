@@ -1,4 +1,4 @@
-function handleFile() {
+async function handleFile() {
     const file = document.getElementById('zipFile').files[0];
     if (file) {
         const reader = new FileReader();
@@ -6,9 +6,15 @@ function handleFile() {
             const username = document.getElementById('username').value;
             const repository = document.getElementById('repository').value;
             const token = document.getElementById('token').value;
+            if (!username || !repository || !token) {
+                alert('Please enter all required fields.');
+                return;
+            }
             await extractZip(e.target.result, username, repository, token);
         };
         reader.readAsArrayBuffer(file);
+    } else {
+        alert('Please select a zip file.');
     }
 }
 
@@ -16,11 +22,18 @@ async function extractZip(zipData, username, repository, token) {
     const jszip = new JSZip();
     const zip = await jszip.loadAsync(zipData);
     const branch = 'main';
+    const totalFiles = Object.keys(zip.files).length;
+    let uploadedFiles = 0;
+
+    document.getElementById('progress-container').style.display = 'block';
 
     for (const filename of Object.keys(zip.files)) {
         const fileData = await zip.files[filename].async('string');
         await uploadToGitHub(username, repository, filename, fileData, token, branch);
+        uploadedFiles++;
+        updateProgress(uploadedFiles, totalFiles);
     }
+    alert('All files uploaded successfully!');
 }
 
 async function uploadToGitHub(username, repository, filename, content, token, branch) {
@@ -46,4 +59,10 @@ async function uploadToGitHub(username, repository, filename, content, token, br
     } else {
         console.log(`Successfully uploaded ${filename}`);
     }
+}
+
+function updateProgress(uploadedFiles, totalFiles) {
+    const percentage = (uploadedFiles / totalFiles) * 100;
+    document.getElementById('progress-bar').style.width = `${percentage}%`;
+    document.getElementById('progress-text').textContent = `${Math.round(percentage)}%`;
 }
